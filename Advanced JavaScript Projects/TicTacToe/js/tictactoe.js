@@ -179,23 +179,24 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
             if (y < y2) { y += 10; }
             //This condition is similar to the one above.
             //It was necessary for the 6,4,2 win condition.
-        }  if (x1 <= x2 && y1 >= y2) { cancelAnimationFrame(animationLoop); }
+        }  if (x1 >= x2 && y1 >= y2) { cancelAnimationFrame(animationLoop); }
     }
     //This condition is similar to the one above.
     //It was necessary for the 6,4,2 win condition.
-    if (x1 >= x2 && y1 <= y2) {
-        if (x > x2) { x -= 10; }
-        if (y < y2) { y += 10; }
-        if (x <= x2 && y >= y2) { cancelAnimationFrame(animationLoop); }
+    if (x1 <= x2 && y1 >= y2) {
+        if (x < x2) { x += 10; }
+        if (y > y2) { y -= 10; }
+        if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop); }
     }
 //This function clears our canvas after our win line is drawn.
-    function clear() {
+function clear() {
     //This line starts our html canvas element.
     const animationLoop = requestAnimationFrame(clear);
     //This line clears our canvas.
     c.clearRect(0, 0, 608, 608);
     //This line stops our animation loop.
     cancelAnimationFrame(animationLoop);
+    requestAnimationFrame(clear);
 }
 //This line disallows clicking while the win sound is playing
 disableClick();
